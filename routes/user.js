@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-19 14:57:31
- * @LastEditTime: 2020-11-20 14:23:44
+ * @LastEditTime: 2020-11-20 14:39:24
  * @LastEditors: Please set LastEditors
  * @Description: User Api
  * @FilePath: \my-server\routes\user.js
@@ -22,7 +22,11 @@ router.use((req, res, next) => {
 })
 
 router.get('/getUserInfo', (req, res, next) => {
-    let sql = "select * from user"
+    let sql;
+    sql = "select * from user"
+    if(req.query.id) {
+        sql = `select * from user where id = ${req.query.id}`
+    }
 
     db(sql, null, (err, result, fields) => {
         if (err) throw err
@@ -32,19 +36,5 @@ router.get('/getUserInfo', (req, res, next) => {
         })
     })
 })
-
-router.get('/getName', (req, res, next) => {
-    console.log('hoho');
-    let sql = `select * from user where id = ${req.query.id}`
-    db(sql, req.query, (err, result, fields) => {
-        if(err) throw err
-        res.json({
-            'code': 200,
-            'data': result
-        })
-    })
-			
-})
-
 
 module.exports = router
