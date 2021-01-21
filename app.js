@@ -27,8 +27,8 @@
 /*
  * @Author: YYM
  * @Date: 2020-09-09 17:48:03
- * @LastEditTime: 2020-11-20 14:37:42
- * @LastEditors: YYM
+ * @LastEditTime: 2020-11-25 13:55:14
+ * @LastEditors: Please set LastEditors
  * @Description: My Node Server
  * @FilePath: \my-server\app.js
  */
@@ -49,6 +49,6 @@ app.use('/user', routerUser)
 
 app.listen(PORT,  (err) => {
 	if (err) throw err
-	console.log('服务器启动成功了，可以通过 http://127.0.0.1:3838/ 来进行访问')
+	console.log('服务器启动成功了，可以通过 http://127.0.0.1:' + PORT +'/ 来进行访问')
 })
 

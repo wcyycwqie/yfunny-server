@@ -1,0 +1,54 @@
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+dl,
+li,
+dt,
+dd {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: '微软雅黑', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #000;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: #000;
+}
+
+input,
+img {
+    padding: 0;
+    border: none;
+    /* 轮廓线 */
+    outline: none;
+    vertical-align: middle;
+}
+
+/* 清除浮动 */
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
