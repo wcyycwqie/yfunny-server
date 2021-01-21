@@ -1,4 +1,11 @@
 /*
+ * @Author: 
+ * @Date: 2020-09-09 17:48:03
+ * @LastEditors: Chaoyue
+ * @LastEditTime: 2021-01-21 14:13:59
+ * @FilePath: \my-server\app.js
+ */
+/*
  * 
  * 　　┏┓　　　┏┓+ +
  * 　┏┛┻━━━┛┻┓ + +
@@ -41,7 +48,7 @@ const routerUser = require('./routes/user')
 
 const PORT = 3838
 
-// 使用中间件s
+// 使用中间件
 app.use(express.static('public'))
 app.use(express.static('views'))
 
