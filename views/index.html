@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-09-09 17:44:04
- * @LastEditTime: 2021-02-07 15:10:01
+ * @LastEditTime: 2021-04-30 17:32:28
  * @LastEditors: Chaoyue
  * @Description: In User Settings Edit
  * @FilePath: \my-server\views\index.html
@@ -72,142 +72,21 @@
     </div>
     <h1 style="margin-top: 20px;font-size: 50px; text-align: center;color: #FFF;">Who am I ?</h1>
     <div id="canvasBox" style="display: flex; justify-content: center;">
-        <canvas id="canvas-I" width="1400" height="800"></canvas>
+        <canvas id="canvas-I" width="900" height="550"></canvas>
+
 
     </div>
 
     <footer><a class="footer-link" href="http://beian.miit.gov.cn/">备案号：粤ICP备2020119625号-1</a> </footer>
 </body>
 
+<script src="/javascript/my-canvas-v0.2.min.js"></script>
 <script>
-    const canvasInit = () => {
-        console.log('canvasInit')
-        let canvas = document.getElementById('canvas-I')
-        if (canvas.getContext) {
-            let context = canvas.getContext('2d')
-            let image = new Image(),
-                canvaW = canvas.width,
-                canvasH = canvas.height,
-                imgX = 0,
-                imgY = 0,
-                list = [],
-                originFlag = false
-            image.w = canvaW
-            image.h = canvasH
-            image.src = './image/06.png'
-
-            let tCount = 0,
-                animationTime = 100,
-                currentTime = 1,
-                ctx = context
-
-            image.onload = function () {
-                context.drawImage(image, imgX, imgY, image.w, image.h);
-                let imageData = context.getImageData(imgX, imgY, image.w, image.h);
-                list = imageData.data
-                let maxLen = list.length
-
-                let particleList = []
-                let caculate = () => {
-                    let cols = 350, // 列数
-                        rows = 200; // 行数
-                    let s_w = parseInt(this.w / cols),
-                        s_h = parseInt(this.h / rows),
-                        pos = 0,
-                        p_x,
-                        p_y;
-                    let frames = 30;
-
-                    for (let y = 0; y < rows; y++) {
-                        for (let x = 0; x < cols; x++) {
-                            pos = [(y * s_h) * this.w + (s_w * x)] * 4
-                            let sx = Math.floor(Math.random() * 1800)
-                            let sy = Math.floor(Math.random() * 1200)
-
-                            let particle = {
-                                sx: imgX + sx + (Math.random() - 0.5),
-                                sy: imgY + sy + (Math.random() - 0.5),
-                                cx: imgX + sx,
-                                cy: imgY + sy,
-                                ex: imgX + x * s_w,
-                                ey: imgY + y * s_h,
-                                td: Math.floor(Math.random() * frames),
-                                tc: Math.floor(Math.random() * frames),
-                                tt: 0,
-                                // x,y 偏移坐标随机值
-                                x: imgX + x * s_w + (Math.random() - 0.5) * 20,
-                                y: imgY + y * s_h + (Math.random() - 0.5) * 20,
-                                style: `rgba(${list[pos]}, ${list[pos+1]}, ${list[pos+2]}, ${list[pos+3]})`
-                                // fillStyle: '#66CCFF'
-
-                            }
-                            particleList.push(particle)
-                            if (x < 2 && y < 1) {
-                                console.log(this.w);
-                                console.log(pos);
-                                console.log(particle);
-                            }
-
-                        }
-                    }
-                    return particleList
-                }
-
-                let finalList = caculate()
-
-                let easeInOutExpo = (t, b, c, d) => {
-                    t /= d / 2;
-                    if (t < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
-                    t--;
-                    return c / 2 * (-Math.pow(2, -10 * t) + 2) + b
-                }
-
-
-                let step = () => {
-                    tCount++
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                    for (let i = 0; i < finalList.length; i++) {
-                        finalList[i].tt++
-                        // finalList[i].cx = finalList[i].sx + (finalList[i].ex - finalList[i].sx) /
-                        //     animationTime * tCount
-                        // finalList[i].cy = finalList[i].sy + (finalList[i].ey - finalList[i].sy) /
-                        //     animationTime * tCount
-                        finalList[i].cx = easeInOutExpo(tCount, finalList[i].sx, finalList[i].ex -
-                            finalList[i].sx, animationTime)
-                        finalList[i].cy = easeInOutExpo(tCount, finalList[i].sy, finalList[i].ey -
-                            finalList[i].sy, animationTime)
-                        ctx.fillStyle = finalList[i].style
-                        ctx.fillRect(finalList[i].cx, finalList[i].cy, 1, 1)
-
-                        if (i < 1 && tCount < 2) {
-                            []
-                            console.log(finalList[i]);
-                        } else if (i < 1 && tCount == animationTime - 1) {
-                            console.log(finalList[i]);
-                        }
-                    }
-
-                    let resetID = requestAnimationFrame(step);
-                    if (tCount == animationTime) {
-                        cancelAnimationFrame(resetID)
-                    }
-
-                }
-
-                step()
-
-
-
-
-            }
-
-
-
-        }
-
+    function main() {
+        let img_I = new CanvasImg('canvas-I', '/image/02.png');
     }
-    canvasInit()
+    main();
+   
 </script>
 
 </html>

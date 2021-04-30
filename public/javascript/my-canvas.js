@@ -2,8 +2,8 @@
  * @Author: 
  * @Date: 2021-02-02 17:56:53
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-02-03 15:19:09
- * @FilePath: \canvas-demo\my-canvas.js
+ * @LastEditTime: 2021-04-30 17:30:30
+ * @FilePath: \my-server\public\javascript\my-canvas.js
  */
 class CanvasImg {
     constructor(id, src) {
@@ -19,11 +19,11 @@ class CanvasImg {
         this.img.src = src;
         this.particleList = [];
         this.cell_w = 3;
-        this.cell_h = 3;
+        this.cell_h = 2;
         this.cols = parseInt(this.width / this.cell_w);
         this.rows = parseInt(this.height / this.cell_h);
         this.count = 0;
-        this.animateTime = 400;
+        this.animateTime = 160;
         this.frameId = '';
         this.init();
     }
@@ -39,15 +39,16 @@ class CanvasImg {
         }
     }
     caculate() {
-        console.log('Caculate');
+        console.log('Caculate');1
         for (let y = 0; y < this.rows; y++) {
             for (let x = 0; x < this.cols; x++) {
                 let cell_index = [(y * this.cell_h) * this.width + (x * this.cell_w)] * 4;
                 let s_x = Math.floor(Math.random() * this.width * 1.5);
                 let s_y = Math.floor(Math.random() * this.height * 1.5);
-                s_x = this.width / 2;
-                s_y = this.height + 2;
+                // s_x = this.width / 2;
+                // s_y = this.height + 2;
                 // s_y = (this.height + Math.random() * this.height * 10);
+                s_x = Math.random() > 0.5 ? this.width : 0;
                 if (this.imageData[cell_index + 3] > 50) {
                     this.particleList.push(new Particle(x, y, this.cell_w, this.cell_h, cell_index, this.imageData,
                         (this.x + s_x), (this.y + s_y),
@@ -71,7 +72,7 @@ class CanvasImg {
                 .particleList[i].e_y - this.particleList[i].s_y, this.animateTime);
 
             if (r >= 0.8) {
-                this.ctx.fillStyle = `rgba(0, 180, 255)`;
+                // this.ctx.fillStyle = `rgba(0, 180, 255)`;
                 // this.ctx.fillStyle = `rgba(230, 245, 5)`;
             } else {}
             this.ctx.fillRect(this.particleList[i].c_x, this.particleList[i].c_y, this.particleList[i].p_w, this.particleList[i].p_h);
@@ -82,7 +83,7 @@ class CanvasImg {
         this.drawImg();
         this.count++;
         this.frameId = window.requestAnimationFrame(this.step.bind(this));
-        if (this.count == this.animateTime) {
+        if (this.count > this.animateTime) {
             console.log(this.count);
             cancelAnimationFrame(this.frameId);
             return
@@ -105,11 +106,11 @@ class Particle {
         this.s_y = s_y;
         this.c_x;
         this.c_y;
-        this.e_x = e_x + ((Math.random() - 0.5) * 10);
-        this.e_y = e_y + ((Math.random() - 0.5) * 10);
+        this.e_x = e_x;
+        this.e_y = e_y;
         this.x = x * cell_w + ((Math.random() - 0.5) * 20);
         this.y = y * cell_h + ((Math.random() - 0.5) * 20);
-        this.c_t = Math.floor((Math.random() - 0.5) * 200);
+        this.c_t = Math.floor((Math.random() - 0.5) * 100);
         this.style =
             `rgba(${imageData[cell_index]}, ${imageData[cell_index+1]}, ${imageData[cell_index+2]}, ${imageData[cell_index+3]})`
     }

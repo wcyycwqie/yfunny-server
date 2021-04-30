@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-11-19 14:57:31
- * @LastEditTime: 2020-11-20 14:39:24
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-02-19 18:22:25
+ * @LastEditors: Chaoyue
  * @Description: User Api
  * @FilePath: \my-server\routes\user.js
  */
@@ -15,6 +15,7 @@ router.use((req, res, next) => {
     console.log(req.url);
 	console.log(req.body)
     console.log(req.query)
+    // 允许跨域请求
     res.setHeader('Access-Control-Allow-Origin',"*")
 	res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
     res.setHeader('Content-Type', 'application/json;charset=utf-8')
