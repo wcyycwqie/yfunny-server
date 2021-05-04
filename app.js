@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2020-09-09 17:48:03
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-01-21 14:13:59
+ * @LastEditTime: 2021-05-04 10:52:50
  * @FilePath: \my-server\app.js
  */
 /*
@@ -46,7 +46,7 @@ const server = http.createServer()
 // 引入路由
 const routerUser = require('./routes/user')
 
-const PORT = 3838
+const PORT = 80
 
 // 使用中间件
 app.use(express.static('public'))
