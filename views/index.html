@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-09-09 17:44:04
- * @LastEditTime: 2021-05-07 18:26:38
+ * @LastEditTime: 2021-05-07 18:28:18
  * @LastEditors: Chaoyue
  * @Description: In User Settings Edit
  * @FilePath: \my-server\views\index.html
@@ -87,7 +87,7 @@
         let img_I = new CanvasImg('canvas-I', '/image/02.png');
         img_I.drawEndFn = () => {
             let host = location.host;
-            location.href = `${host}:6868`;
+            location.href = `http://${host}:6868`;
         }
         console.log(img_I);
     }
