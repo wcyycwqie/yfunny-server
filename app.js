@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2020-09-09 17:48:03
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-05-04 10:52:50
+ * @LastEditTime: 2021-05-07 11:19:03
  * @FilePath: \my-server\app.js
  */
 /*
@@ -47,6 +47,7 @@ const server = http.createServer()
 const routerUser = require('./routes/user')
 
 const PORT = 80
+
 
 // 使用中间件
 app.use(express.static('public'))

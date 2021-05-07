@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-02-02 17:56:53
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-04-30 17:30:30
+ * @LastEditTime: 2021-05-07 14:31:27
  * @FilePath: \my-server\public\javascript\my-canvas.js
  */
 class CanvasImg {
@@ -25,6 +25,7 @@ class CanvasImg {
         this.count = 0;
         this.animateTime = 160;
         this.frameId = '';
+        this.drawEndFn= function() {};
         this.init();
     }
     init() {
@@ -37,6 +38,8 @@ class CanvasImg {
             this.caculate();
             this.step();
         }
+      
+
     }
     caculate() {
         console.log('Caculate');1
@@ -74,18 +77,27 @@ class CanvasImg {
             if (r >= 0.8) {
                 // this.ctx.fillStyle = `rgba(0, 180, 255)`;
                 // this.ctx.fillStyle = `rgba(230, 245, 5)`;
+
             } else {}
             this.ctx.fillRect(this.particleList[i].c_x, this.particleList[i].c_y, this.particleList[i].p_w, this.particleList[i].p_h);
 
         }
     }
+    drawEnd(callback) {
+        console.log('draw end');
+        callback()
+    }
     step() {
         this.drawImg();
+
         this.count++;
         this.frameId = window.requestAnimationFrame(this.step.bind(this));
         if (this.count > this.animateTime) {
             console.log(this.count);
             cancelAnimationFrame(this.frameId);
+            setTimeout(() => {
+                this.drawEnd(this.drawEndFn)
+            }, 1000);
             return
         }
 

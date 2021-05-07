@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-09-09 17:44:04
- * @LastEditTime: 2021-05-04 14:14:42
+ * @LastEditTime: 2021-05-07 17:12:30
  * @LastEditors: Chaoyue
  * @Description: In User Settings Edit
  * @FilePath: \my-server\views\index.html
@@ -80,10 +80,15 @@
     <footer><a class="footer-link" href="http://beian.miit.gov.cn/">备案号：粤ICP备2020119625号-1</a> </footer>
 </body>
 
+<!-- <script src="/javascript/my-canvas.js"></script> -->
 <script src="/javascript/my-canvas-v0.2.min.js"></script>
 <script>
     function main() {
         let img_I = new CanvasImg('canvas-I', '/image/02.png');
+        img_I.drawEndFn = () => {
+            location.href = 'http://localhost:7878';
+        }
+        console.log(img_I);
     }
     main();
    
