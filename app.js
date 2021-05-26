@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2020-09-09 17:48:03
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-05-07 11:19:03
+ * @LastEditTime: 2021-05-26 15:37:28
  * @FilePath: \my-server\app.js
  */
 /*
@@ -51,7 +51,7 @@ const PORT = 80
 
 // 使用中间件
 app.use(express.static('public'))
-app.use(express.static('views'))
+app.use(express.static('views', {extensions: ['html']}))
 
 app.use('/user', routerUser)
 
