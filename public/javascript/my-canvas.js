@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-02-02 17:56:53
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-05-07 14:31:27
+ * @LastEditTime: 2021-06-25 15:35:05
  * @FilePath: \my-server\public\javascript\my-canvas.js
  */
 class CanvasImg {
@@ -25,7 +25,7 @@ class CanvasImg {
         this.count = 0;
         this.animateTime = 160;
         this.frameId = '';
-        this.drawEndFn= function() {};
+        this.drawEndFn = function () {};
         this.init();
     }
     init() {
@@ -38,11 +38,10 @@ class CanvasImg {
             this.caculate();
             this.step();
         }
-      
 
     }
     caculate() {
-        console.log('Caculate');1
+        console.log('Caculate');
         for (let y = 0; y < this.rows; y++) {
             for (let x = 0; x < this.cols; x++) {
                 let cell_index = [(y * this.cell_h) * this.width + (x * this.cell_w)] * 4;

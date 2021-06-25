@@ -4,6 +4,7 @@ node_modules
 package-lock.json
 uploads
 public/imageTemp/
+public/imgShow/
 
 # local env files
 .env.local
