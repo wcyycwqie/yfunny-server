@@ -2,15 +2,15 @@
  * @Author: Chaoyue
  * @Date: 2021-07-12 18:39:13
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-07-12 18:48:36
+ * @LastEditTime: 2021-07-12 18:54:05
  * @FilePath: \my-server\routes\starry.js
  */
 const express = require('express')
 const router = express.Router()
-cosnt db = require('../database')
+const db = require('../database')
 
 router.use((req, res, next) => {
-    console.log('Starry API run');
+    console.log('Starry API run')
     console.log(req.url);
     console.log(req.body);
     console.log(req.query);
@@ -36,6 +36,26 @@ router.get('/getDemoData', (req, res, next) => {
             'ddata': result
         })
     })
+})
+
+router.post('/addNewDemo', (req, res, next) => {
+    /* 
+        @param
+
+    */
+    console.log(req.body);
+    let sql = `INSERT INFO demo SET ?`
+    db(sql, req.body, (err, result, fields) => {
+        console.log(err);
+        err && (res.json({
+            'code': 202,
+            'msg': 'False'
+        })) || (res.json({
+            'code': 200,
+            'msg': 'success'
+        }))
+    })
+
 })
 
 module.exports = router
