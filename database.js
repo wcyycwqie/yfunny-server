@@ -1,21 +1,21 @@
 /*
  * @Author: your name
  * @Date: 2020-11-19 14:39:01
- * @LastEditTime: 2020-11-19 15:29:06
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-07-12 17:39:26
+ * @LastEditors: Chaoyue
  * @Description: Database Connection
- * @FilePath: \my-server\routes\database.js
+ * @FilePath: \my-server\database.js
  */
 
- module.exports = (sql, param, callback) => {
+module.exports = (sql, param, callback) => {
     const mysql = require('mysql')
-    
+
     const connection = mysql.createConnection({
         host: 'localhost',
         port: '3306',
         user: 'root',
         password: '123456',
-        database: 'personal_blog',
+        database: 'y_starry',
         dateStrings: true
     })
 
@@ -24,4 +24,4 @@
     connection.query(sql, param, callback)
 
     connection.end()
- }
+}

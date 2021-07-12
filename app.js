@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2020-09-09 17:48:03
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-05-26 15:37:28
+ * @LastEditTime: 2021-07-12 18:34:50
  * @FilePath: \my-server\app.js
  */
 /*
@@ -44,6 +44,7 @@ const express = require('express')
 const app = express()
 const server = http.createServer()
 // 引入路由
+const routerMain = require('./routes/index')
 const routerUser = require('./routes/user')
 
 const PORT = 80
@@ -53,7 +54,10 @@ const PORT = 80
 app.use(express.static('public'))
 app.use(express.static('views', {extensions: ['html']}))
 
+
+app.use('/api', routerMain)
 app.use('/user', routerUser)
+
 
 app.listen(PORT,  (err) => {
 	if (err) throw err
