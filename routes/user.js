@@ -1,7 +1,7 @@
 /*
  * @Author: Chaoyue
  * @Date: 2020-11-19 14:57:31
- * @LastEditTime: 2021-07-12 18:35:42
+ * @LastEditTime: 2021-07-13 16:34:47
  * @LastEditors: Chaoyue
  * @Description: User Api
  * @FilePath: \my-server\routes\user.js
@@ -33,7 +33,7 @@ router.get('/getUserInfo', (req, res, next) => {
         if (err) throw err
         res.json({
             'code': 200,
-            'data': result
+            'Data': result
         })
     })
 })
