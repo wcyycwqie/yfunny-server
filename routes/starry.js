@@ -2,7 +2,7 @@
  * @Author: Chaoyue
  * @Date: 2021-07-12 18:39:13
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-07-13 18:57:40
+ * @LastEditTime: 2021-07-17 14:33:44
  * @FilePath: \my-server\routes\starry.js
  */
 const express = require('express')
@@ -32,32 +32,37 @@ router.get('/getDemoData', (req, res, next) => {
         page = req.query.page || 1,
         pageCount = req.query.pageCount || 10;
 
-    sql = `SELECT * FROM demo ORDER By demo_id DESC LIMIT ${(page - 1) * pageCount}, ${pageCount}`
+
+    let testArr = ['hoho', 'hahaha']
+
+    sql = `SELECT * FROM demo ORDER BY demo_id DESC LIMIT ${(page - 1) * pageCount}, ${pageCount}`
     if (req.query.id) {
-        sql = `select * from demo where demo_id = ${req.query.id}`
+        sql = `SELECT * FROM demo WHERE demo_id = ${req.query.id}`
     }
 
     db(sql, null, (err, result, fields) => {
         if (err) throw err
-        console.log('hohohohoho');
-        console.log(result);
-        console.log((result[0].tag));
-        res.send({
-            'code': 200,
-            'Data': result
+        result.map(el => {
+            el.tag = JSON.parse(el.tag)
+        })
+        res.json({
+            code: 200,
+            Data: result
         })
     })
 })
 
-router.post('/addNewDemo', (req, res, next) => {
+router.post('/addNewDemo', upload.single, (req, res, next) => {
     /* 
         @param
-        title,
-        
+        title: String,
+        content: String,
+        tag: [String, String],
         
     */
     console.log('********');
     console.log(req.body.title);
+
 
     let sql = `INSERT INTO demo SET ?`,
         values = {
@@ -65,6 +70,7 @@ router.post('/addNewDemo', (req, res, next) => {
             content: req.body.content,
             tag: req.body.tag
         }
+
 
     db(sql, values, (err, result, fields) => {
         console.log(err);
@@ -78,5 +84,11 @@ router.post('/addNewDemo', (req, res, next) => {
     })
 
 })
+
+router.post('/delDemo', (req, res, next ) => {
+    let sql = `DELETE FROM demo WHERE demo_id = ?;`
+})
+
+
 
 module.exports = router
