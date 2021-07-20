@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2020-09-09 17:48:03
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-07-13 18:37:21
+ * @LastEditTime: 2021-07-19 18:03:11
  * @FilePath: \my-server\app.js
  */
 /*
@@ -61,6 +61,7 @@ app.use(express.static('views', {
 app.use(express.urlencoded({
 	extended: false
 }))
+app.use(express.json())
 
 app.use('/api', routerMain)
 app.use('/user', routerUser)
